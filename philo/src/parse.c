@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:18:59 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/22 13:32:14 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/23 15:49:27 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ bool check_errors(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_atoi(argv[i]) < 0)
+		if (ft_atol(argv[i]) <= 0 || ft_atol(argv[i]) > INT_MAX)
 		{
-			printf("Error: Argument must be a positive number\n");
+			printf("Error: Invalid argument\n");
 			return (false);
 		}
 		i++;

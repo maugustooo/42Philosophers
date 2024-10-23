@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:24:02 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/22 14:23:24 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:29:15 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ suseconds_t	ft_get_time(void)
 
 	gettimeofday(&now, NULL);
 	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
+}
+
+int ft_usleep(t_philo *philo, long time)
+{
+	long begin;
+
+	begin = ft_get_time();
+	while (ft_get_time() - begin < time)
+	{
+		if(died(philo))
+			return (1);
+	}
+	return (0);	
 }
 
 int	ft_atoi(const char *str)

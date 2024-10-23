@@ -13,5 +13,7 @@ int main(int argc, char **argv)
 	init_table(&table, argv);
 	forks = init_forks(table.num_philos);
 	philo = init_philos(&table, forks);
-	start_simulation(&philo, &table);
+	start_simulation(philo, &table);
+	free(philo);
+	free(forks);
 }

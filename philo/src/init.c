@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:33 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/22 15:55:17 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/23 14:34:13 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void init_table(t_table *table, char **argv)
 		table->max_meals = ft_atoi(argv[5]);
 	else
 		table->max_meals = -1;
-	pthread_mutex_init(&table->mutex, NULL);
+	pthread_mutex_init(&(table->mutex), NULL);
 }
 
 pthread_mutex_t	*init_forks(int num_philo)
@@ -36,7 +36,11 @@ pthread_mutex_t	*init_forks(int num_philo)
 		return (NULL);
 	while (i < num_philo)
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
+        {
+            printf("Error initializing mutex for fork %d\n", i);
+            return (NULL);
+        }
 		i++;
 	}
 	return (forks);
@@ -44,25 +48,26 @@ pthread_mutex_t	*init_forks(int num_philo)
 
 t_philo	*init_philos(t_table *table, pthread_mutex_t *forks)
 {
-	int	i;
+	int		i;
+	long	get_time;
 	t_philo *philo;
 	
 	i = 0;
 	philo = malloc(sizeof(t_philo) * table->num_philos);
 	if(!philo)
 		return (0);
+	get_time = ft_get_time();
 	while (i < table->num_philos)
 	{
 		philo[i].l_fork = &forks[i];
-		if (i == table->num_philos - 1)
-			philo[i].r_fork = &forks[0];
-		else
-			philo[i].r_fork = &forks[i + 1];
+		philo[i].r_fork = &forks[(i + 1) % table->num_philos];
 		philo[i].id = i;
-		philo[i].meals = 0;
+		philo[i].meals = table->max_meals;
 		philo[i].table = table;
 		philo[i].last_meal = ft_get_time();
+		philo[i].start_time = get_time;
 		i++;
 	}
+	i = 0;
 	return (philo);
 }
