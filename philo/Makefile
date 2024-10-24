@@ -6,7 +6,7 @@
 #    By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/21 11:06:36 by maugusto          #+#    #+#              #
-#    Updated: 2024/10/23 15:13:01 by maugusto         ###   ########.fr        #
+#    Updated: 2024/10/24 15:40:19 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC			= -I./includes
 RM			= rm -rf
 
 GENERAL		= main
-SRC_DIR		= utils parse routine simulation init monitor
+SRC_DIR		= utils parse routine init monitor
 
 #==============================================================================#
 #                                    PATHS                                     #

@@ -6,15 +6,15 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:18:59 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/23 15:49:27 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:27:26 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool check_errors(int argc, char **argv)
+bool	check_errors(int argc, char **argv)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i < argc)
@@ -29,7 +29,7 @@ bool check_errors(int argc, char **argv)
 	return (true);
 }
 
-bool parse(int argc, char **argv)
+bool	parse(int argc, char **argv)
 {
 	if (argc == 5 || argc == 6)
 	{
@@ -45,8 +45,8 @@ bool parse(int argc, char **argv)
 	else
 	{
 		printf("Error: arguments must be: number_of_philosophers, time_to_die, "
-       "time_to_eat, time_to_sleep, "
-	   "opcional:number_of_times_each_philosopher_must_eat\n");
+			"time_to_eat, time_to_sleep, "
+			"opcional:number_of_times_each_philosopher_must_eat\n");
 		return (false);
 	}
 }
