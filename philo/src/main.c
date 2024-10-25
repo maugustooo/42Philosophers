@@ -6,11 +6,21 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 15:23:04 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/24 15:40:06 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:44:29 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	freedom(t_philo *philo, t_table *table, pthread_mutex_t *forks)
+{
+	if (philo)
+		free(philo);
+	if (forks)
+		free_forks(forks, table->num_philos);
+	if (table)
+		pthread_mutex_destroy(&table->mutex);
+}
 
 void	start_simulation(t_philo *philo, t_table *table)
 {
@@ -52,8 +62,11 @@ int	main(int argc, char **argv)
 		return (0);
 	init_table(&table, argv);
 	forks = init_forks(table.num_philos);
+	if (!forks)
+		return (freedom(philo, &table, forks), 0);
 	philo = init_philos(&table, forks);
+	if (!philo)
+		return (freedom(philo, &table, forks), 0);
 	start_simulation(philo, &table);
-	free(philo);
-	free(forks);
+	freedom(philo, &table, forks);
 }

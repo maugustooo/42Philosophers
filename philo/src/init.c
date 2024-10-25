@@ -6,11 +6,24 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:12:33 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/24 15:49:10 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:44:42 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	free_forks(pthread_mutex_t *forks, int num_philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < num_philo && &forks[i])
+	{
+		pthread_mutex_destroy(&forks[i]);
+		i++;
+	}
+	free(forks);
+}
 
 void	init_table(t_table *table, char **argv)
 {
@@ -36,7 +49,11 @@ pthread_mutex_t	*init_forks(int num_philo)
 		return (NULL);
 	while (i < num_philo)
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
+		{
+			free_forks(forks, i);
+			return (NULL);
+		}
 		i++;
 	}
 	return (forks);

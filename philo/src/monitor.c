@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:32:13 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/24 16:00:04 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:56:25 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_deaths(t_philo *philo, t_table *table)
 		{
 			pthread_mutex_lock(&table->mutex);
 			philo->table->end = true;
-			printf("%ld philo %d died\n", ft_get_time() - philo->start_time,
+			printf("%ld %d died\n", ft_get_time() - philo->start_time,
 				philo[i].id);
 			pthread_mutex_unlock(&table->mutex);
 			return (1);

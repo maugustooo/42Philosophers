@@ -6,22 +6,21 @@
 #    By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/21 11:06:36 by maugusto          #+#    #+#              #
-#    Updated: 2024/10/24 15:40:19 by maugusto         ###   ########.fr        #
+#    Updated: 2024/10/25 13:27:59 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC 			= cc
 CFLAGS 		= -Wall -Wextra -Werror -g
-LDFLAGS		= -lpthread -fsanitize=thread
+LDFLAGS		= -lpthread -fsanitize=leak
 
 NAME		= philo
 
 INC			= -I./includes
 RM			= rm -rf
 
-GENERAL		= main
-SRC_DIR		= utils parse routine init monitor
+SRC_DIR		= main utils parse routine init monitor routine_utils
 
 #==============================================================================#
 #                                    PATHS                                     #
@@ -29,8 +28,7 @@ SRC_DIR		= utils parse routine init monitor
 
 VPATH		= src 
 
-SRC			= $(addsuffix .c, $(GENERAL))\
-			  $(addsuffix .c, $(SRC_DIR))\
+SRC			= $(addsuffix .c, $(SRC_DIR))\
 
 OBJ_DIR		= obj
 

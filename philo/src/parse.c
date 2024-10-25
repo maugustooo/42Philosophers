@@ -6,11 +6,25 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:18:59 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/24 15:27:26 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:51:48 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_str_isdigit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 bool	check_errors(int argc, char **argv)
 {
@@ -19,7 +33,8 @@ bool	check_errors(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_atol(argv[i]) <= 0 || ft_atol(argv[i]) > INT_MAX)
+		if (ft_atol(argv[i]) <= 0 || ft_atol(argv[i]) > INT_MAX
+			|| ft_str_isdigit(argv[i]))
 		{
 			printf("Error: Invalid argument\n");
 			return (false);
