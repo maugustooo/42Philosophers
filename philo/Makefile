@@ -6,14 +6,14 @@
 #    By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/21 11:06:36 by maugusto          #+#    #+#              #
-#    Updated: 2024/10/25 13:27:59 by maugusto         ###   ########.fr        #
+#    Updated: 2024/10/25 17:28:44 by maugusto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 CC 			= cc
 CFLAGS 		= -Wall -Wextra -Werror -g
-LDFLAGS		= -lpthread -fsanitize=leak
+LDFLAGS		= -lpthread -fsanitize=thread
 
 NAME		= philo
 

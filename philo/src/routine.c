@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:26:45 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/25 13:26:00 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 21:54:02 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_and_release(t_philo *philo)
 {
 	if (died(philo))
 	{
-		lock_unlock_forks(philo, 2, NULL);
+		lock_unlock_forks(philo, 2);
 		return (1);
 	}
 	return (0);
@@ -36,9 +36,9 @@ static int	check_and_release(t_philo *philo)
 
 static void	handle_meal(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->table->mutex);
-	philo->meals--;
 	philo->last_meal = ft_get_time();
+	philo->meals--;
+	pthread_mutex_lock(&philo->table->mutex);
 	if (philo->meals == 0)
 		philo->table->count++;
 	pthread_mutex_unlock(&philo->table->mutex);
@@ -46,10 +46,7 @@ static void	handle_meal(t_philo *philo)
 
 static void	ft_eat(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-		lock_unlock_forks(philo, 1, "even");
-	else
-		lock_unlock_forks(philo, 1, "odd");
+	lock_unlock_forks(philo, 1);
 	if (check_and_release(philo))
 		return ;
 	log_event(philo, "has taken a fork");
@@ -61,8 +58,8 @@ static void	ft_eat(t_philo *philo)
 		return ;
 	log_event(philo, "is eating");
 	if (ft_usleep(philo, philo->table->time_to_eat))
-		return (lock_unlock_forks(philo, 2, NULL));
-	lock_unlock_forks(philo, 2, NULL);
+		return (lock_unlock_forks(philo, 2));
+	lock_unlock_forks(philo, 2);
 }
 
 void	*philo_routine(void *pointer)

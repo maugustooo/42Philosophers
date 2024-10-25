@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:32:13 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/25 10:56:25 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:24:47 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	check_meals(t_philo *philo, t_table *table)
 	pthread_mutex_lock(&table->mutex);
 	if (table->count == table->num_philos)
 	{
-		printf("Every philo ate their respective meals!\n");
 		philo->table->end = true;
+		printf("Every philo ate their respective meals!\n");
 		pthread_mutex_unlock(&table->mutex);
 		return (1);
 	}
@@ -34,7 +34,7 @@ int	check_meals(t_philo *philo, t_table *table)
 int	philo_starve(t_philo *philo, int i)
 {
 	pthread_mutex_lock(&philo->table->mutex);
-	if (ft_get_time() - philo[i].last_meal >= philo->table->time_to_die)
+	if (ft_get_time() - philo[i].last_meal > philo->table->time_to_die)
 	{
 		pthread_mutex_unlock(&philo->table->mutex);
 		return (1);

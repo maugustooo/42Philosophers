@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:18:59 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/25 10:51:48 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 15:57:49 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	parse(int argc, char **argv)
 {
 	if (argc == 5 || argc == 6)
 	{
-		if (ft_atoi(argv[1]) < 1)
+		if (ft_atol(argv[1]) < 1)
 		{
 			printf("Error: Number of philosophers must be greater than 0\n");
 			return (false);

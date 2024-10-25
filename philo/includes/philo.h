@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:07:33 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/25 12:48:58 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/25 19:40:04 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void			free_forks(pthread_mutex_t *forks, int num_philo);
 void			monitor(t_philo	*philo);
 
 void			*philo_routine(void *pointer);
-void			lock_unlock_forks(t_philo *philo, int what_to_do, char *order);
+void			lock_unlock_forks(t_philo *philo, int what_to_do);
 void			log_event(t_philo *philo, const char *event);
