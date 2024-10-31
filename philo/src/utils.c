@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:24:02 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/31 15:09:05 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:32:24 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_usleep(t_philo *philo, long time)
 	{
 		if (died(philo))
 			return (1);
-		usleep(200);
 	}
 	return (0);
 }

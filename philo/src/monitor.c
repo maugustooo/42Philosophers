@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:32:13 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/25 19:24:47 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:53:30 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,10 @@ void	monitor(t_philo	*philo)
 
 int	died(t_philo *philo)
 {
+	int result;
+
 	pthread_mutex_lock(&philo->table->mutex);
-	if (philo->table->end)
-	{
-		pthread_mutex_unlock(&philo->table->mutex);
-		return (1);
-	}
+	result = philo->table->end;
 	pthread_mutex_unlock(&philo->table->mutex);
-	return (0);
+	return (result) ;
 }
