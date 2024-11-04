@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 13:26:45 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/31 19:36:54 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:46:35 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,7 @@ static void	ft_sleep_and_think(t_philo *philo)
 	log_event(philo, "is sleeping");
 	if (ft_usleep(philo, philo->table->time_to_sleep))
 		return ;
-	if (philo->id % 2)
-	{
-		log_event(philo, "is thinking");
-		if (ft_usleep(philo, philo->table->time_to_eat))
-			return ;
-	}
-    else
-	{
-		log_event(philo, "is thinking");
-		if (ft_usleep(philo, (philo->table->time_to_die
-                - (philo->table->time_to_eat + philo->table->time_to_sleep
-                    + philo->id))))
-			return ;
-	}
+	log_event(philo, "is thinking");
 }
 
 static void	handle_meal(t_philo *philo)

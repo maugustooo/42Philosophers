@@ -6,7 +6,7 @@
 /*   By: maugusto <maugusto@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 12:46:06 by maugusto          #+#    #+#             */
-/*   Updated: 2024/10/31 19:09:57 by maugusto         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:35:02 by maugusto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	lock_unlock_forks(t_philo *philo, int what_to_do)
 void	log_event(t_philo *philo, const char *event)
 {
 	pthread_mutex_lock(&philo->table->mutex);
-	if(philo->table->end)
+	if (philo->table->end)
 	{
 		pthread_mutex_unlock(&philo->table->mutex);
 		return ;
